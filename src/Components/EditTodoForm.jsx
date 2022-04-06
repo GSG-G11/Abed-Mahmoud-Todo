@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
 
+
 export class EditTodoForm extends Component {
   state = {
     show: false,
+    input:this.props.text,
   };
   handleClose = () => this.setState({show: false});
   handleShow = () => this.setState({show: true});
-
+  
   render() {
+    const {editTodo,id} = this.props;
     return (
-      <>
+      <>editTodo
         <Button variant="warning" onClick={this.handleShow}>
           Edit
         </Button>
@@ -22,7 +25,9 @@ export class EditTodoForm extends Component {
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Edit Todo</Form.Label>
-                <Form.Control type="text" autoFocus />
+                <Form.Control onChange={(e)=> this.setState({
+                  input: e.target.value,
+                })} value={this.state.input} type="text" autoFocus />
               </Form.Group>
             </Form>
 
@@ -30,7 +35,10 @@ export class EditTodoForm extends Component {
               <Button variant="secondary" onClick={this.handleClose}>
                 Close
               </Button>
-              <Button variant="primary">Save Changes</Button>
+              <Button onClick={() => {
+                editTodo(id,this.state.input) 
+                this.handleClose()
+              }}  variant="primary">Save Changes</Button>
             </Modal.Footer>
           </Modal.Body>
         </Modal>

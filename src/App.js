@@ -50,6 +50,22 @@ class App extends Component {
     });
   };
 
+  editTodo = (id, text) => {
+    if (!text.trim()) {
+      swal("Oops...", "You must enter a value!", "error");
+      return;
+    }
+    const newTodos = this.state.todos.map((todo) => {
+      if (todo.id === id) {
+        todo.text = text;
+      }
+      return todo;
+    });
+    this.setState({
+      todos: newTodos,
+    });
+  };
+
   render() {
     const { todos, todoValue } = this.state;
     return (
@@ -58,7 +74,11 @@ class App extends Component {
           <span className="text-info">Todo</span> List
         </h1>
         <AddTodoForm todoValue={todoValue} addTodo={this.addTodo} />
-        <TodoListItems deleteTodo={this.deleteTodo} todos={todos} />
+        <TodoListItems
+          editTodo={this.editTodo}
+          deleteTodo={this.deleteTodo}
+          todos={todos}
+        />
       </div>
     );
   }
