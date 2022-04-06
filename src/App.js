@@ -20,7 +20,7 @@ const todos = [
 ];
 class App extends Component {
   state = {
-    todos,
+    todos: todos.sort((a, b) => b.id - a.id),
     todoValue: '',
   };
 
@@ -37,13 +37,16 @@ class App extends Component {
     };
 
     this.setState({
-      todos: [...this.state.todos, newTodo],
+      todos: [...this.state.todos, newTodo].sort((a, b) => b.id - a.id),
     });
   };
   render() {
     const {todos, todoValue} = this.state;
     return (
       <div className="container">
+        <h1 className="text-center mt-5">
+          <span className="text-info">Todo</span> List
+        </h1>
         <AddTodoForm todoValue={todoValue} addTodo={this.addTodo} />
         <TodoListItems todos={todos} />
       </div>
