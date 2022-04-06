@@ -2,7 +2,7 @@ import React from 'react';
 import EditTodoForm from './EditTodoForm';
 
 function TodoListItems(props) {
-  const {todos} = props;
+  const {todos,deleteTodo} = props;
   return (
     <ul className="list-group mt-5">
       {todos.map(todo => {
@@ -14,7 +14,7 @@ function TodoListItems(props) {
             <h5 className="text-light b">{todo.text}</h5>
             <div className="buttons">
               <EditTodoForm />
-              <button className="btn btn-danger m-3">Delete</button>
+              <button onClick={deleteTodo} value = {todo.id} className="btn btn-danger m-3">Delete</button>
             </div>
           </div>
         );
