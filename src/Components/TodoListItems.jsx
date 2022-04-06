@@ -1,4 +1,5 @@
 import React from 'react';
+import EditTodoForm from './EditTodoForm';
 
 function TodoListItems(props) {
   const {todos} = props;
@@ -11,9 +12,9 @@ function TodoListItems(props) {
             key={todo.id}
           >
             <h5>{todo.text}</h5>
-            <div className="btns">
-              <button className="btn btn-warning m-2">Edit</button>
-              <button className="btn btn-danger">Delete</button>
+            <div className="buttons">
+              <EditTodoForm />
+              <button className="btn btn-danger m-3">Delete</button>
             </div>
           </div>
         );
