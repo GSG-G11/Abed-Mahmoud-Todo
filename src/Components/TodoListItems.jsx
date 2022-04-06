@@ -7,7 +7,7 @@ function TodoListItems(props) {
       {todos.map(todo => {
         return (
           <div
-            className="col-md-8 m-auto d-flex justify-content-between align-items-center list-group-item"
+            className="col-md-12 m-auto d-flex justify-content-between align-items-center list-group-item"
             key={todo.id}
           >
             <h5>{todo.text}</h5>
